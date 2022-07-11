@@ -1,0 +1,7 @@
+name: StatTracker
+version: '${project.version}'
+main: me.kelopy.stattracker.StatTracker
+api-version: 1.18
+authors: [ Kelopy ]
+description: Tracks player statistics
+website: https://discord.gg/MnYwRJYUkG

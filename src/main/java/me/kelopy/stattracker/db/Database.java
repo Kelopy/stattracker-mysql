@@ -6,6 +6,18 @@ import java.sql.*;
 
 public class Database {
 
+    private final String HOST;
+    private final String USER;
+    private final String PASSWORD;
+    private final String DATABASE_NAME;
+
+    public Database(String HOST, String USER, String PASSWORD, String DATABASE_NAME) {
+        this.HOST = HOST;
+        this.USER = USER;
+        this.PASSWORD = PASSWORD;
+        this.DATABASE_NAME = DATABASE_NAME;
+    }
+
     private Connection connection;
 
     public Connection getConnection() throws SQLException {
@@ -14,11 +26,9 @@ public class Database {
             return connection;
         }
 
-        String url = "jdbc:mysql://localhost/stat_tracker";
-        String user = "root";
-        String password = "";
+        String url = "jdbc:mysql://" + this.HOST + "/" + this.DATABASE_NAME;
 
-        this.connection = DriverManager.getConnection(url, user, password);
+        this.connection = DriverManager.getConnection(url, this.USER, this.PASSWORD);
         System.out.println("Stat Tracker is connected to the database.");
 
         return this.connection;

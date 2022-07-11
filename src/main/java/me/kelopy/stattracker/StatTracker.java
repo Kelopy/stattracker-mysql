@@ -15,16 +15,23 @@ public final class StatTracker extends JavaPlugin {
     @Override
     public void onEnable() {
 
-            try {
-                this.database = new Database();
-                database.initializeDatabase();
-            } catch (SQLException e) {
-                System.out.println("Unable to connect to the database.");
-                throw new RuntimeException(e);
-            }
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+        instance = this;
 
-            instance = this;
-            getServer().getPluginManager().registerEvents(new Listeners(), this);
+        try {
+            this.database = new Database(
+                    getConfig().getString("database.host"),
+                    getConfig().getString("database.user"),
+                    getConfig().getString("database.password"),
+                    getConfig().getString("database.database_name"));
+            database.initializeDatabase();
+        } catch (SQLException e) {
+            System.out.println("Unable to connect to the database.");
+            throw new RuntimeException(e);
+        }
+
+        getServer().getPluginManager().registerEvents(new Listeners(), this);
     }
 
     @Override

@@ -1,2 +1,2 @@
 # Stat Tracker
-Stat Tracker w/ MySQL Database
+- Statistics Tracker with MySQL database
